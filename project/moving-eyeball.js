@@ -1,9 +1,9 @@
-const pink = color(255, 204, 204);
+let pink = color(255, 204, 204);
 
 let pupil = {
   x:250,
   y:200,
-  radius: 30,
+  radius: 50,
   direction: 1,
   
   show(){
@@ -13,9 +13,9 @@ let pupil = {
   },
   
   move(){
-    this.x+=5
-    if(this.x>450||this.x<50){
-      this.direction*-1;
+    this.x+=(1*this.direction)
+    if(this.x>300||this.x<200){
+      this.direction*=-1;
     }
   }
 };
@@ -26,7 +26,7 @@ function setup() {
 }
 
 function draw() {
-  background(pink);
+  background("pink");
   fill("white");
   circle(250, 200, 200); // big circle
   
