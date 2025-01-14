@@ -2,8 +2,14 @@ let video;
 let bodyPose;
 let poses = [];
 
+function test(x,y){
+  fill("white")
+  circle(x,y,40)
+  fill("black")
+  circle(x,y,20)
+}
 const randomizeButton = document.getElementById("randomize");
-const eyes = [];
+const eyes = [test];
 let currentEye;
 
 function preload() {
@@ -18,18 +24,22 @@ function setup() {
   video.size(640, 480);
   video.hide();
 
+  // start detecting poses in the webcam video
+  bodyPose.detectStart(video, gotPoses);
+
   //initial randomization
   currentEye = eyes[Math.floor(Math.random() * eyes.length)];
 
-  // start detecting poses in the webcam video
-  bodyPose.detectStart(video, gotPoses);
-}
-
-function draw() {
   //check if button clicked, if so, randomize
   randomizeButton.addEventListener('click', () => {
     currentEye = eyes[Math.floor(Math.random() * eyes.length)];
   });
+
+}
+
+function draw() {
+  // Draw the webcam video
+  image(video, 0, 0, width, height);
 
   // draw the webcam video
   image(video, 0, 0, width, height);
