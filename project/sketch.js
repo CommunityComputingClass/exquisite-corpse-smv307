@@ -3,10 +3,10 @@ let bodyPose;
 let poses = [];
 
 function test(x,y){
-  fill("white")
-  circle(x,y,40)
-  fill("black")
-  circle(x,y,20)
+  fill("white");
+  circle(x,y,40);
+  fill("black");
+  circle(x,y,20);
 }
 const randomizeButton = document.getElementById("randomize");
 const eyes = [test];
