@@ -2,14 +2,56 @@ let video;
 let bodyPose;
 let poses = [];
 
-function test(x,y){
+// Class eyes
+function haydenEyes (x, y){
+  noStroke()
+  //eyelid
+  fill("rgba(147, 147, 147, 0.51)")
+  ellipse(x, y, 51, 45)
+  //eyes
+  stroke("black")
+  fill("rgb(213, 213, 213)")
+  ellipse(x, y, 50, 30);
+    
   fill("white")
-  circle(x,y,40)
-  fill("black")
-  circle(x,y,20)
+  noStroke()
+  ellipse(x+2, y-2, 44, 20);
+  fill('rgb(239, 123, 177)')
+  ellipse(x+6, 0, 4, 8)
+  //iris 
+  for(let i=5; i>=0; i-=1 ){
+    let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+    
+    fill(colors[i])
+    ellipse(x, y, i*2+15, i*2+15)
+  }
+  fill('black')
+  ellipse(x, y, 10, 10)
+  fill('white')
+  ellipse(x+3, y-5, 5, 5)
 }
+
+function hillaryEyes(x,y){
+  fill ("white")  
+  ellipse(x, y, 80, 40);
+  describe('A white ellipse on a gray canvas.');
+  stroke("black")
+  circle(x, y, 25);
+  circle(x+15, y+5, 10);
+}
+function sloaneEyes(x,y){
+  fill("white");
+  circle(x,y,40);
+  fill("black");
+  circle(x,y,20);
+}
+
+
+
 const randomizeButton = document.getElementById("randomize");
-const eyes = [test];
+
+
+const eyes = [sloaneEyes, hillaryEyes, haydenEyes];
 let currentEye;
 
 function preload() {
@@ -27,9 +69,8 @@ function setup() {
   // start detecting poses in the webcam video
   bodyPose.detectStart(video, gotPoses);
 
-  //initial randomization
-  currentEye = eyes[Math.floor(Math.random() * eyes.length)];
 
+  currentEye = eyes[Math.floor(Math.random() * eyes.length)];
   //check if button clicked, if so, randomize
   randomizeButton.addEventListener('click', () => {
     currentEye = eyes[Math.floor(Math.random() * eyes.length)];
@@ -38,10 +79,6 @@ function setup() {
 }
 
 function draw() {
-  // Draw the webcam video
-  image(video, 0, 0, width, height);
-
-  // draw the webcam video
   image(video, 0, 0, width, height);
 
   // draw eyes
