@@ -1,9 +1,9 @@
 let video;
 let bodyPose;
 let poses = [];
+const randomizeButton = document.getElementById("randomize");
 
-<<<<<<< HEAD
-// Class eyes
+// class eye functions 
 function haydenEyes (x, y){
   noStroke()
   //eyelid
@@ -30,14 +30,6 @@ function haydenEyes (x, y){
   ellipse(x, y, 10, 10)
   fill('white')
   ellipse(x+3, y-5, 5, 5)
-=======
-function test(x,y){
-  fill("white");
-  circle(x,y,40);
-  fill("black");
-  circle(x,y,20);
->>>>>>> a0f51000c4c26e0856b9ddc13e732d80c2b0aa8b
-}
 
 function hillaryEyes(x,y){
   fill ("white")  
@@ -54,13 +46,8 @@ function sloaneEyes(x,y){
   circle(x,y,20);
 }
 
-
-
-const randomizeButton = document.getElementById("randomize");
-
-
 const eyes = [sloaneEyes, hillaryEyes, haydenEyes];
-let currentEye;
+let currentEye; // eye on user face
 
 function preload() {
   bodyPose = ml5.bodyPose();
@@ -77,8 +64,8 @@ function setup() {
   // start detecting poses in the webcam video
   bodyPose.detectStart(video, gotPoses);
 
-
-  currentEye = eyes[Math.floor(Math.random() * eyes.length)];
+  currentEye = eyes[Math.floor(Math.random() * eyes.length)]; //initial randomization
+  
   //check if button clicked, if so, randomize
   randomizeButton.addEventListener('click', () => {
     currentEye = eyes[Math.floor(Math.random() * eyes.length)];
